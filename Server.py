@@ -1,54 +1,96 @@
 import socket
 import threading
-import tkinter as tk
-
+import interface
+from tkinter import *
+"""
 ## init the server
 socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 socket.bind(('',8558))
 
 ## init the windows
+"""
 
 
 
-
-print("yay")
+print("1yay")
 
 class ThreadChat(threading.Thread):
-    def __init__(self,conn):
+    def __init__(self,conn,log,socket):
         threading.Thread.__init__(self)
+        self.socket = socket
         self.conn = conn
+        self.log = log
     def run(self):
-        message = self.conn.recv(1024)
-        message = message.decode("utf8")
-        th1.textbox.insert(tk.END, message+"\n")
+        while True :
+            message = self.conn.recv(1024)
+            message = message.decode("utf8")
+            self.log.insert(END,message)
+            self.conn.send(message.encode("utf8"))
 
 
-class interface(threading.Thread):
-    def __init__(self):
+class ServThread (threading.Thread):
+    def __init__(self,host = "", port = 8558):
         threading.Thread.__init__(self)
-        self.fen = tk.Tk()
-        self.fen.geometry("800x800")
+        self.ListClient = []
+        self.socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        self.socket.bind((host,port))
 
-        self.textbox = tk.Text(self.fen)
-        self.textbox.pack()
-        self.button = tk.Button(self.fen, text="exit", command=self.fen.quit)
-        self.button.pack()
-        self.fen.mainloop()
+    def GiveLog(self,log):
+        self.log = log
+
+    def run(self):
+        while True:
+            self.socket.listen()
+            self.conn, self.address = self.socket.accept()
+            self.client = ThreadChat(self.conn, self.log,self.socket)
+            self.ListClient.append((self.client, self.conn))
+            self.client.start()
+    def SendAllClient(self,message):
+        for c,h in self.ListClient:
+            self.h.send(message)
 
 
 
-th1 = interface()
-th1.start()
 
-th1.textbox.insert(tk.END,"The server is init\n")
+class ChatServ():
+    def __init__(self,host = "", port = 8558):
+        self.ListClient = []
+        self.host = host
+        self.port = port
+        #self.log = log
+    def Start(self,log):
+        self.log = log
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket.bind((self.host,self.port))
+        while True:
+            self.socket.listen()
+            self.conn, self.adress =  self.socket.accept()
+            self.log.insert(END,"Un client c'est connecté{}".format(self.adress))
+            self.client = ThreadChat(self.conn,self.log)
+            self.client.start()
+    def Stop(self):
+        self.log.insert(END,"Le server est déconnecter")
+        self.client.close()
+        self.socket.close()
+
+
+
+
+
+
+
+
+
+
+"""
 while True :
     socket.listen(5)
     client,address = socket.accept()
-    th1.textbox.insert(tk.END, "A client is connect\n")
     print("A client is connect")
     conn = ThreadChat(client)
     conn.start()
 
 
+
 client.close()
-socket.close()
+socket.close()"""

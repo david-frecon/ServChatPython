@@ -1,9 +1,11 @@
 from tkinter import *
 from tkinter import font
+#from Server import serv
 
-class fenetre():
-    def __init__(self):
+class Inter():
+    def __init__(self, serv):
         self.root = Tk()
+        self.serv = serv
         self.font = font.Font(family='Ubuntu', weight='bold')
         self.root.resizable(False,False)
         for frame, text in [("1","Option Serveur"),("2","Mod Chat"),("3","Option du server"),("4","Log"),("5","Thème"),("6","List")]:
@@ -45,7 +47,7 @@ class fenetre():
                 exec("self.but"+item+".config(bg = \"#2f3640\", fg = \"#FFFFFF\")")
 
         else :
-            self.theme.config(text = "DARK",bg="#2f3640", fg="#000000")
+            self.theme.config(text = "DARK",bg="#2f3640", fg="#FFFFFF")
             self.root.config(bg="#FFFFFF")
             self.log.config(bg="#FFFFFF", fg="#000000")
             self.chat.config(bg="#FFFFFF", fg="#000000", disabledbackground="#FFFFFF")
@@ -69,6 +71,8 @@ class fenetre():
             self.but1.config(text = "OFF", bg = "#ED0B0B")
             self.ModifyState("normal")
             self.log.insert(END,"Le serveur demarre ...\n")
+            self.serv.GiveLog(self.log)
+            self.serv.start()
         else :
             self.but1.config(text="ON", bg="#fbc531")
             self.log.insert(END, "Le serveur s'éteint ...\n")
@@ -92,6 +96,6 @@ class fenetre():
         self.log.grid(sticky="we")
         self.theme.grid(sticky = "we")
         self.users.grid(sticky = "we")
-panel = fenetre()
+"""panel = fenetre()
 panel.showpanel()
-panel.root.mainloop()
+panel.root.mainloop()"""
