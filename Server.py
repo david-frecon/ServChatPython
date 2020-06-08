@@ -48,7 +48,6 @@ class ThreadChat(threading.Thread):
         global all_client
         threading.Thread.__init__(self)
         self.socket = socket
-        #self.socket.setblocking(0)
         self.address = address
         self.conn = conn
         self.log = log
@@ -104,6 +103,8 @@ class ServThread (threading.Thread):
         while True:
             self.socket.listen()
             self.conn, self.address = self.socket.accept()
+            #self.conn.setblocking(0)
+            #self.conn.settimeout(0)
             self.client = ThreadChat(self.conn, self.log,self.socket,self.address)
             self.ListClient.append((self.client, self.conn))
             all_client.append((self.conn,self.client))
@@ -137,6 +138,7 @@ class ServThread (threading.Thread):
 
 
 
+
 class ChatServ():
     def __init__(self,host = "", port = 8558):
         self.ListClient = []
@@ -155,8 +157,8 @@ class ChatServ():
             self.client.start()
     def Stop(self):
         self.log.insert(END,"Le server est déconnecter")
-        self.client.close()
-        self.socket.close()
+        #self.client.close()
+        #self.socket.close()
 
 
 

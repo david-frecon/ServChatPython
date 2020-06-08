@@ -1,5 +1,49 @@
 from tkinter import *
 
+
+class InterConn():
+    def __init__(self):
+        self.root = Tk()
+        #self.root.geometry("800x800")
+        self.root.resizable(False,False)
+        self.lab = Label(self.root, text = "Salon de connection")
+        self.LabPseudo = Label(self.root, text = "Pseudo")
+        self.LabHost = Label(self.root, text="Host")
+        self.LabPort = Label(self.root, text="Port")
+        self.pseudo = StringVar()
+        self.host = StringVar()
+        self.port = StringVar()
+        self.entpseudo = Entry(self.root, textvariable = self.pseudo, relief = "flat")
+        self.enthost = Entry(self.root, textvariable = self.host, relief = "flat")
+        self.entport = Entry(self.root, textvariable = self.port, relief = "flat")
+        self.btn = Button(self.root, text = "Confimation")
+
+
+    def Confirmation(self):
+        self.pseudo2 = self.pseudo.get()
+        self.host2 = self.host.get()
+        self.port2 = self.port.get()
+        
+
+
+    def SetPanel(self):
+        self.lab.grid(row = 0, column = 2)
+        self.LabPseudo.grid(row = 1, column = 2)
+        self.LabHost.grid(row=3, column=0)
+        self.LabPort.grid(row=3, column=3)
+        self.entpseudo.grid(row = 2, column = 2)
+        self.enthost.grid(row = 4, column = 0)
+        self.entport.grid(row = 4, column = 3)
+        self.btn.grid(row = 4, column = 1)
+
+
+test = InterConn()
+test.SetPanel()
+test.root.mainloop()
+
+
+
+
 class InterClient():
     def __init__(self,client):
         self.root = Tk()
