@@ -10,7 +10,7 @@ class InterClient():
         self.Chat = Entry(self.root, textvariable = self.message, relief = "flat", bg = "#FFFFFF")
         self.btn = Button(self.root, text = "Dark", command = self.ChangeTheme)
         self.btn2 = Button(self.root, text = "SEND", command = self.SendMessage)
-        self.client.GiveLog(self.log)
+        self.client.GiveLog(self.log,self.Chat)
         self.root.bind('<Return>', self.SendMessage)
 
     def ChangeTheme(self):
@@ -28,10 +28,9 @@ class InterClient():
             self.Chat.config(bg="#FFFFFF",fg = "#000000")
 
     def SendMessage(self,event):
-        print("bbb")
-        #self.log.insert(END, self.message.get() + "\n")
-        self.client.SendMessage(self.message.get()+"\n")
-        self.Chat.delete(0,END)
+        if self.message.get() != "":
+            self.client.SendMessage(self.message.get()+"\n")
+            self.Chat.delete(0,END)
 
     def panel(self):
         #self.frame1.grid(row = 0, column = 0,sticky = "WE")

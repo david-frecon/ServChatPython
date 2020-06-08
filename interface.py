@@ -17,7 +17,7 @@ class Inter():
 
         self.but1 = Button(self.frame1,text = "ON",  bg='#fbc531', fg="#FFFFFF",font=self.font,bd=0, command = self.StartServ)
         self.but2 = Button(self.frame3, text="Mute", state=DISABLED, fg="#f1c40f",
-                                   font=font.Font(family='Ubuntu', size=10, weight='bold'), bd=0)
+                                   font=font.Font(family='Ubuntu', size=10, weight='bold'), bd=0, command = self.Mute)
         self.but3 = Button(self.frame3, text="kick", state=DISABLED, fg="#f1c40f",
                            font=font.Font(family='Ubuntu', size=10, weight='bold'), bd=0)
         self.but4 = Button(self.frame3, text="ban", state=DISABLED, fg="#f1c40f",
@@ -32,6 +32,13 @@ class Inter():
         self.users = Listbox(self.frame6, selectbackground="#9b59b6", activestyle="none", bd=0,
                                      highlightthickness=1, highlightcolor="#9b59b6")
         self.root.bind('<Return>', self.SendMessage)
+
+    def Mute(self):
+        print("mute")
+        i = self.users.curselection()
+        pseudo = self.users.get(i)
+        print(pseudo)
+        self.serv.Mute2(pseudo)
 
     def selecttheme(self):
         if self.theme.cget("text") == "DARK":
@@ -59,8 +66,10 @@ class Inter():
                 exec("self.but" + item + ".config(bg = \"#FFFFFF\", fg = \"#000000\")")
 
     def SendMessage(self,event):
-        self.log.insert(END,self.message.get()+"\n")
-        self.chat.delete(0,END)
+        if self.message.get() != "":
+            self.log.insert(END,self.message.get()+"\n")
+            self.serv.SendAllClient("[Server]"+self.message.get()+"\n")
+            self.chat.delete(0,END)
 
     def ModifyState(self, state):
         for i in ["but2","but3","but4", "chat","log"]:
@@ -71,7 +80,7 @@ class Inter():
             self.but1.config(text = "OFF", bg = "#ED0B0B")
             self.ModifyState("normal")
             self.log.insert(END,"Le serveur demarre ...\n")
-            self.serv.GiveLog(self.log)
+            self.serv.GiveParameter(self.log,self.users)
             self.serv.start()
         else :
             self.but1.config(text="ON", bg="#fbc531")

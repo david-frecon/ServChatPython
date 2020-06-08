@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e9c7993-3803-43fd-80c3-2fe60f501a15" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/GlobClient.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Glob_Server.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/InterfaceClient.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ServChatPython.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ServChatPython.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client.py" beforeDir="false" afterPath="$PROJECT_DIR$/Client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InterfaceClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/InterfaceClient.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface.py" afterDir="false" />
     </list>
@@ -40,7 +35,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Image python" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="RunManager" selected="Python.GlobClient">
+  <component name="RunManager" selected="Python.Glob_Server">
     <configuration name="Client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ServChatPython" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -183,8 +178,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.GlobClient" />
         <item itemvalue="Python.Glob_Server" />
+        <item itemvalue="Python.GlobClient" />
         <item itemvalue="Python.Client" />
         <item itemvalue="Python.InterfaceClient" />
         <item itemvalue="Python.interface" />
@@ -202,7 +197,7 @@
       <option name="presentableId" value="Default" />
       <updated>1591061425263</updated>
       <workItem from="1591061434888" duration="19424000" />
-      <workItem from="1591346304042" duration="23505000" />
+      <workItem from="1591346304042" duration="40494000" />
     </task>
     <servers />
   </component>
@@ -218,22 +213,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1591346520974" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1591571264862">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1591592262177">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591571264862" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1591571264862">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591592262177" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1591592262177">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591571264862" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1591571264861">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591592262177" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1591592262177">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591571264861" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1591571264862">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591592262177" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1591592262177">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591571264862" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591592262177" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1591571104370">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -260,10 +255,10 @@
     <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1591346422308" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ServChatPython$Glob_Server.coverage" NAME="Glob_Server Coverage Results" MODIFIED="1591571187303" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ServChatPython$Glob_Server.coverage" NAME="Glob_Server Coverage Results" MODIFIED="1591592262162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ServChatPython$Client.coverage" NAME="Client Coverage Results" MODIFIED="1591569788109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ServChatPython$interface.coverage" NAME="interface Coverage Results" MODIFIED="1591456568448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ServChatPython$GlobClient.coverage" NAME="GlobClient Coverage Results" MODIFIED="1591571264851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ServChatPython$GlobClient.coverage" NAME="GlobClient Coverage Results" MODIFIED="1591574807870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ServChatPython$Image.coverage" NAME="Image Coverage Results" MODIFIED="1591346736781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Image python" />
     <SUITE FILE_PATH="coverage/ServChatPython$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1591062156344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/ServChatPython$InterfaceClient.coverage" NAME="InterfaceClient Coverage Results" MODIFIED="1591567877366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
