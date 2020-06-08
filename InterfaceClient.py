@@ -1,9 +1,10 @@
 from tkinter import *
-
+from tkinter.messagebox import *
 
 class InterConn():
-    def __init__(self):
+    def __init__(self, client):
         self.root = Tk()
+        self.client = client
         #self.root.geometry("800x800")
         self.root.resizable(False,False)
         self.lab = Label(self.root, text = "Salon de connection")
@@ -16,14 +17,20 @@ class InterConn():
         self.entpseudo = Entry(self.root, textvariable = self.pseudo, relief = "flat")
         self.enthost = Entry(self.root, textvariable = self.host, relief = "flat")
         self.entport = Entry(self.root, textvariable = self.port, relief = "flat")
-        self.btn = Button(self.root, text = "Confimation")
+        self.btn = Button(self.root, text = "Confimation", command = self.Confirmation)
 
 
     def Confirmation(self):
         self.pseudo2 = self.pseudo.get()
         self.host2 = self.host.get()
         self.port2 = self.port.get()
-        
+        if self.pseudo2 == "" or self.host2 == "" or self.port2 == "":
+            showwarning(title = "Mauvaise entrée", message = "Tous les champs doivent être remplie")
+        else :
+            self.interclient = InterClient(self.client)
+            self.interclient.panel()
+            self.interclient.root.mainloop()
+
 
 
     def SetPanel(self):
@@ -37,9 +44,9 @@ class InterConn():
         self.btn.grid(row = 4, column = 1)
 
 
-test = InterConn()
+"""test = InterConn()
 test.SetPanel()
-test.root.mainloop()
+test.root.mainloop()"""
 
 
 
