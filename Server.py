@@ -17,12 +17,19 @@ print("1yay")
 
 
 class UpdateListBox(threading.Thread):
-    def __init__(self,listbox):
+    def __init__(self):
         threading.Thread.__init__(self)
         self.totalpseudo = ""
+        self.is_running = True
+
+    def givepara(self, listbox):
         self.listbox = listbox
+
+    def terminate(self):
+        self.is_running = False
+
     def run(self):
-        while True:
+        while self.is_running:
             tot = ""
             for conn, client in all_client:
                 if client.pseudo == "":
@@ -53,20 +60,32 @@ class ThreadChat(threading.Thread):
         self.log = log
         self.pseudo = ""
         self.mute = False
+        self.is_running = True
+
+    def terminate(self):
+        self.is_running = False
+
     def run(self):
         global all_client
         for i in all_client:
             print(i)
-        while True :
-            print(self.mute)
+        while self.is_running :
+            #print(self.mute)
             if not self.mute:
-                print("france")
+                #print("france")
                 message = self.conn.recv(4096)
                 message = message.decode("utf8")
-                print(message[0:7])
+                #print(message[0:7])
                 if message[0:8] == "pseudo :":
-                    self.pseudo = "["+message[9:-1]+"]"
-                    print(self.pseudo)
+                    self.pseudo = "["+message[8:]+"]"
+                    #print(self.pseudo)
+                elif message[0:] == "/rquit":
+                    for i in range (len(all_client)):
+                        __conn, __client = all_client[i]
+                        if __client.pseudo == self.pseudo:
+                            __conn.close()
+                            all_client.pop(i)
+                            self.terminate()
                 else:
                     message = self.pseudo+ message
                     self.log.insert(END,message)
@@ -87,24 +106,29 @@ class ThreadChat(threading.Thread):
 
 
 class ServThread (threading.Thread):
-    def __init__(self,host = "", port = 8558):
+    def __init__(self,host = "192.168.1.19", port = 855):
         global all_client
         threading.Thread.__init__(self)
         self.ListClient = []
         self.socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
         self.socket.bind((host,port))
+        self.is_running = True
+        self.update = UpdateListBox()
+
+    def terminate(self):
+        self.update.terminate()
+        self.is_running = False
+
     def GiveParameter(self,log, listbox):
         self.log = log
-        self.update = UpdateListBox(listbox)
+        self.update.givepara(listbox)
         self.update.start()
 
     def run(self):
         global all_client
-        while True:
+        while self.is_running:
             self.socket.listen()
             self.conn, self.address = self.socket.accept()
-            #self.conn.setblocking(0)
-            #self.conn.settimeout(0)
             self.client = ThreadChat(self.conn, self.log,self.socket,self.address)
             self.ListClient.append((self.client, self.conn))
             all_client.append((self.conn,self.client))
@@ -116,7 +140,7 @@ class ServThread (threading.Thread):
                 conn.send(message.encode("utf8"))
 
     def Mute2(self, pseudo):
-        print("recherche")
+        #print("recherche")
         for conn, client in all_client:
             ip,_ = client.address
             #print(ip + " " + client.pseudo)

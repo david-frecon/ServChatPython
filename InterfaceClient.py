@@ -1,10 +1,12 @@
 from tkinter import *
 from tkinter.messagebox import *
+import socket
+import time
 
 class InterConn():
-    def __init__(self, client):
+    def __init__(self):
         self.root = Tk()
-        self.client = client
+        self.root.title("titre yaya")
         #self.root.geometry("800x800")
         self.root.resizable(False,False)
         self.lab = Label(self.root, text = "Salon de connection")
@@ -18,18 +20,27 @@ class InterConn():
         self.enthost = Entry(self.root, textvariable = self.host, relief = "flat")
         self.entport = Entry(self.root, textvariable = self.port, relief = "flat")
         self.btn = Button(self.root, text = "Confimation", command = self.Confirmation)
-
+        self.bool = False
 
     def Confirmation(self):
         self.pseudo2 = self.pseudo.get()
         self.host2 = self.host.get()
         self.port2 = self.port.get()
+        print(self.host2 + " " + self.port2 + " " + self.pseudo2)
         if self.pseudo2 == "" or self.host2 == "" or self.port2 == "":
             showwarning(title = "Mauvaise entrée", message = "Tous les champs doivent être remplie")
         else :
-            self.interclient = InterClient(self.client)
-            self.interclient.panel()
-            self.interclient.root.mainloop()
+            try :
+                self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                self.socket.connect((self.host2, int(self.port2)))
+                ppp = "pseudo :"+ self.pseudo2
+                self.socket.send(ppp.encode("utf8"))
+                self.root.destroy()
+                #time.sleep(10)
+                self.bool = True
+            except:
+                showwarning(title="Mauvaise entrée", message="Tous les champs doivent être remplie")
+
 
 
 
@@ -51,29 +62,32 @@ test.root.mainloop()"""
 
 
 
+
+
+
 class InterClient():
     def __init__(self,client):
-        self.root = Tk()
-        self.root.resizable(False, False)
+        self.root2 = Tk()
+        self.root2.resizable(False, False)
         self.client = client
         self.message = StringVar()
-        self.log = Text(self.root, relief = "flat", bg = "#FFFFFF" )
-        self.Chat = Entry(self.root, textvariable = self.message, relief = "flat", bg = "#FFFFFF")
-        self.btn = Button(self.root, text = "Dark", command = self.ChangeTheme)
-        self.btn2 = Button(self.root, text = "SEND", command = self.SendMessage)
+        self.log = Text(self.root2, relief = "flat", bg = "#FFFFFF" )
+        self.Chat = Entry(self.root2, textvariable = self.message, relief = "flat", bg = "#FFFFFF")
+        self.btn = Button(self.root2, text = "Dark", command = self.ChangeTheme)
+        self.btn2 = Button(self.root2, text = "SEND", command = self.SendMessage)
         self.client.GiveLog(self.log,self.Chat)
-        self.root.bind('<Return>', self.SendMessage)
+        self.root2.bind('<Return>', self.SendMessage)
 
     def ChangeTheme(self):
         if self.btn.cget("text") == "Dark":
             self.btn.config(text = "Light", bg = "#6566EC",fg = "#FFFFFF")
-            self.root.config(bg = "#2f3640")
+            self.root2.config(bg = "#2f3640")
             self.log.config(bg = "#49525E",fg = "#FFFFFF")
             self.btn2.config(bg = "#2f3640",fg = "#FFFFFF")
             self.Chat.config(bg = "#49525E",fg = "#FFFFFF")
         else :
             self.btn.config(text="Dark", bg="#FFFFFF",fg = "#000000")
-            self.root.config(bg="#BBC5D2")
+            self.root2.config(bg="#BBC5D2")
             self.log.config(bg="#FFFFFF",fg = "#000000")
             self.btn2.config(bg="#FFFFFF",fg = "#000000")
             self.Chat.config(bg="#FFFFFF",fg = "#000000")

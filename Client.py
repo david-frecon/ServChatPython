@@ -3,7 +3,6 @@ import threading
 from tkinter import *
 import time
 
-#print("connection {}".format(port))
 
 class RecoverMessage(threading.Thread):
     def __init__(self,conn,log,Chat):
@@ -11,8 +10,12 @@ class RecoverMessage(threading.Thread):
         self.conn = conn
         self.log = log
         self.chat = Chat
+        self.is_running = True
+
+    def terminate(self):
+        self.is_running = False
     def run(self):
-        while True:
+        while self.is_running:
             self.message = self.conn.recv(1024)
             if self.message.decode("utf8") == "/rmuteuser":
                 self.chat.config(state = DISABLED)
@@ -22,11 +25,12 @@ class RecoverMessage(threading.Thread):
                 self.log.insert(END,self.message)
 
 class Client():
-    def __init__(self, host = "localhost", port = 8558):
+    def __init__(self,socket):
         threading.Thread.__init__(self)
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.connect((host, port))
+        self.socket = socket
 
+    def ter(self):
+        self.RecMess.terminate()
 
     def GiveLog(self,log,chat):
         self.log = log
@@ -37,12 +41,3 @@ class Client():
         self.socket.send(message.encode("utf8"))
 
 
-"""
-rec = RecoverMessage(socket)
-rec.start()
-while True:
-    data = input()
-    socket.send(data.encode("utf8"))
-
-socket.close()
-"""
